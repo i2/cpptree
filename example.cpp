@@ -115,43 +115,64 @@ void NodeAllNodes(vector_tree<string>* my_tree) {
 int main() {
     vector_tree<string> mytree;
     int cnode;
-    mytree.setName(0, "This is a tree of strings.");
+    mytree.setName(0, "/");
     cnode = mytree.addNode(0);
-    mytree.setName(1, "It can contain any number of strings.");
+    mytree.setName(1, "/astos");
     mytree.addNode(0);
+    mytree.setName(2, "/usr/share/ast symlink to /astos/usr/share/ast");
     mytree.addNode(0);
+    mytree.setName(3, "/var/lib/ast symlink to /astos/var/lib/ast");
+    mytree.addNode(0);
+    mytree.setName(4, "/etc/ast symlink to /astos/etc/ast");
     cnode = mytree.addNode(1);
-    mytree.setName(cnode, "And any number of branches.");
-    mytree.addNode(1);
-    mytree.addNode(2);
-    char select;
-    while (true) {
-        cls();
-        cout << std::endl;
-        mytree.printTree();
-        cout << "\nSelect an option:\n  1. Add a new node\n  2. Remove a node\n  3. Assign a value to node\n";
-        cout << "  4. Print all nodes under selected node\n  5. Print all nodes under selected node (recursively)\n\n";
-        select = getchar();
-        switch (select) {
-            case '1': 
-                NodeAdd(&mytree);
-                break;
-            case '2':
-                NodeRemove(&mytree);
-                break;
-            case '3':
-                NodeAssign(&mytree);
-                break;
-            case '4':
-                NodeNodes(&mytree);
-                break;
-            case '5':
-                NodeAllNodes(&mytree);
-                break;
-            default:
-                cout << "\nNot a valid choice!\n";
-                cin.ignore();
-                break;
-        }
-    }
+    mytree.setName(cnode, "/.snapshots");
+    cnode = mytree.addNode(5);
+    mytree.setName(cnode, "/rootfs");
+    cnode = mytree.addNode(5);
+    mytree.setName(cnode, "/etc");
+    cnode = mytree.addNode(5);
+    mytree.setName(cnode, "/var");
+    cnode = mytree.addNode(5);
+    mytree.setName(cnode, "/boot");
+    cnode = mytree.addNode(6);
+    mytree.setName(cnode, "root file system snapshots (/)");
+    cnode = mytree.addNode(7);
+    mytree.setName(cnode, "etc snapshots (/etc)");
+    cnode = mytree.addNode(8);
+    mytree.setName(cnode, "var snapshot specific files (/var/lib/some_stuff)");
+    cnode = mytree.addNode(9);
+    mytree.setName(cnode, "boot snapshots (/boot)");
+    
+    cnode = mytree.addNode(1);
+    mytree.setName(cnode, "/usr");
+    cnode = mytree.addNode(14);
+    mytree.setName(cnode, "/share");
+    cnode = mytree.addNode(15);
+    mytree.setName(cnode, "/ast");
+    cnode = mytree.addNode(16);
+    mytree.setName(cnode, "/db");
+    cnode = mytree.addNode(16);
+    mytree.setName(cnode, "/ast.d");
+    cnode = mytree.addNode(17);
+    mytree.setName(cnode, "/package database");
+    cnode = mytree.addNode(18);
+    mytree.setName(cnode, "/astos files specific to snapshot");
+
+    cnode = mytree.addNode(1);
+    mytree.setName(cnode, "/var");
+    cnode = mytree.addNode(21);
+    mytree.setName(cnode, "/lib");
+    cnode = mytree.addNode(22);
+    mytree.setName(cnode, "/ast");
+    cnode = mytree.addNode(23);
+    mytree.setName(cnode, "astos specific files");
+
+    cnode = mytree.addNode(1);
+    mytree.setName(cnode, "/etc");
+    cnode = mytree.addNode(25);
+    mytree.setName(cnode, "/ast");
+    cnode = mytree.addNode(26);
+    mytree.setName(cnode, " astos configuration options");
+
+	mytree.printTree();
 }
